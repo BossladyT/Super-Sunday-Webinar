@@ -107,7 +107,209 @@
 <p> Do not Miss It!</p>
 
 </section>
+<section class="landing-tab">
 
+  <!-- Custom shaped gradient background tab -->
+  <div class="animated-gradient-bg"></div>
+
+  <!-- Layered blobs -->
+  <div class="blob layer1"></div>
+  <div class="blob layer2"></div>
+  <div class="blob layer3"></div>
+  <div class="blob layer4"></div>
+
+  <!-- Sparkles -->
+  <div class="sparkle-container"></div>
+
+  <!-- Glow behind image -->
+  <div class="image-glow"></div>
+
+  <!-- Image anchored at bottom -->
+  <img 
+    src="https://i.imgur.com/7YCXOyT.png" 
+    alt="Dennis" 
+    class="hover-img">
+</section>
+
+<style>
+/* Section */
+.landing-tab {
+  position: relative;
+  text-align: center;
+  max-width: 900px;
+  margin: 50px auto;
+  overflow: visible;
+  padding: 20px 20px 50px 20px;
+  min-height: 500px;
+}
+
+/* Custom contour gradient background tab */
+.animated-gradient-bg {
+  position:absolute;
+  top:0; left:0;
+  width:100%; height:100%;
+  background: linear-gradient(260deg, #ff6ec7, #7851a9, #4facfe, #00f2fe, #ffb347);
+  background-size: 1200% 1200%;
+  animation: gradientShift 15s ease infinite;
+  border-radius: 30px;
+  clip-path: polygon(
+    0% 0%, 100% 0%, 
+    100% 70%, 75% 75%, 
+    65% 88%, 55% 95%, 
+    45% 95%, 35% 88%, 
+    25% 75%, 0% 70%
+  ); /* Refined contour to match Dennis’ body */
+  z-index:0;
+}
+
+/* Image anchored at bottom with hover effect and narrow border */
+.hover-img {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  max-width: 400px;
+  width: auto;
+  max-height: 450px;
+  border-radius: 10px;
+  z-index: 3;
+  padding: 5px;
+  background: rgba(255,255,255,0.01);
+  box-shadow: 0 15px 40px rgba(0,0,0,0.35);
+  transition: all 0.3s ease;
+}
+
+.hover-img:hover {
+  transform: translateX(-50%) scale(1.08);
+  box-shadow: 0 18px 45px rgba(0,0,0,0.4);
+}
+
+/* Glow behind image */
+.image-glow {
+  position: absolute;
+  bottom: 15px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 370px;
+  height: 370px;
+  background: radial-gradient(circle, rgba(255,255,255,0.25), rgba(0,0,0,0));
+  border-radius: 50%;
+  filter: blur(45px);
+  z-index: 2;
+}
+
+/* Blobs */
+.blob {
+  position:absolute;
+  border-radius:50%;
+  opacity:0.4;
+  filter: blur(40px);
+  z-index:1;
+  animation: float 10s ease-in-out infinite, colorShift 12s ease infinite;
+}
+
+/* Blob positions */
+.layer1 { top:-40px; left:-30px; width:220px; height:220px; }
+.layer2 { bottom:-50px; right:-50px; width:300px; height:300px; }
+.layer3 { top:15%; right:8%; width:180px; height:180px; }
+.layer4 { bottom:18%; left:12%; width:160px; height:160px; }
+
+/* Floating animation */
+@keyframes float {
+  0% { transform: translateY(0px) translateX(0px); }
+  50% { transform: translateY(-25px) translateX(15px); }
+  100% { transform: translateY(0px) translateX(0px); }
+}
+
+/* Color shift for blobs */
+@keyframes colorShift {
+  0%   { background: rgba(255,110,199,0.4); }
+  25%  { background: rgba(120,75,160,0.4); }
+  50%  { background: rgba(79,172,254,0.4); }
+  75%  { background: rgba(0,242,254,0.4); }
+  100% { background: rgba(255,179,71,0.4); }
+}
+
+/* Gradient animation */
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Sparkles */
+.sparkle-container {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top:0; left:0;
+  pointer-events:none;
+  z-index:1;
+  overflow:hidden;
+}
+
+.sparkle {
+  position: absolute;
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.9);
+  opacity: 0.9;
+  animation: sparkleMove linear infinite;
+}
+
+@keyframes sparkleMove {
+  0% { transform: translateY(0) translateX(0); opacity: 0.9; }
+  50% { opacity: 0.5; }
+  100% { transform: translateY(-600px) translateX(50px); opacity: 0; }
+}
+
+/* Responsive adjustments */
+@media screen and (max-width: 768px) {
+  .landing-tab { min-height: 480px; padding: 20px; }
+  .hover-img { max-width: 280px; max-height: 320px; bottom: 15px; }
+  .image-glow { width: 250px; height: 250px; bottom: 10px; }
+  .layer1 { width:180px; height:180px; top:-20px; left:-20px; }
+  .layer2 { width:250px; height:250px; bottom:-30px; right:-30px; }
+  .layer3 { width:150px; height:150px; top:10%; right:5%; }
+  .layer4 { width:130px; height:130px; bottom:15%; left:10%; }
+}
+</style>
+
+<script>
+// Throttle helper
+function throttle(fn, wait){
+  let time = Date.now();
+  return function(){
+    if ((time + wait - Date.now()) < 0) {
+      fn();
+      time = Date.now();
+    }
+  }
+}
+
+// Parallax blobs
+window.addEventListener('scroll', throttle(() => {
+  const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+  document.querySelector('.layer1').style.transform = `translateY(${scrollTop * 0.03}px)`;
+  document.querySelector('.layer2').style.transform = `translateY(${scrollTop * 0.05}px)`;
+  document.querySelector('.layer3').style.transform = `translateY(${scrollTop * 0.02}px)`;
+  document.querySelector('.layer4').style.transform = `translateY(${scrollTop * 0.04}px)`;
+}, 16));
+
+// Generate sparkles
+const sparkleContainer = document.querySelector('.sparkle-container');
+for(let i=0;i<35;i++){
+  const sparkle = document.createElement('div');
+  sparkle.className='sparkle';
+  sparkle.style.top=`${Math.random()*100}%`;
+  sparkle.style.left=`${Math.random()*100}%`;
+  sparkle.style.width=`${Math.random()*3 + 2}px`;
+  sparkle.style.height=sparkle.style.width;
+  sparkle.style.animationDuration=`${Math.random()*5+5}s`;
+  sparkleContainer.appendChild(sparkle);
+}
+</script>
 </section>
 
 <header>
@@ -222,6 +424,7 @@ tsParticles.load("ai-particles",{
 
 </body>
 </html>
+
 
 
 

@@ -107,17 +107,19 @@
 <section style="position:relative; 
                 text-align:center; 
                 padding:60px 20px; 
-                background: linear-gradient(135deg, #ff3cac, #784ba0); 
                 border-radius:20px; 
                 max-width:900px; 
                 margin:50px auto; 
                 overflow:hidden; 
                 box-shadow: 0 10px 30px rgba(0,0,0,0.25);">
 
-  <!-- Animated decorative blobs -->
-  <div class="blob" style="top:-50px; left:-50px; width:200px; height:200px; background: rgba(255,255,255,0.1);"></div>
-  <div class="blob" style="bottom:-50px; right:-60px; width:250px; height:250px; background: rgba(255,255,255,0.15);"></div>
-  <div class="blob" style="top:20%; right:10%; width:150px; height:150px; background: rgba(255,255,255,0.08);"></div>
+  <!-- Animated gradient background -->
+  <div class="animated-gradient-bg"></div>
+
+  <!-- Animated and color-shifting blobs -->
+  <div class="blob blob1"></div>
+  <div class="blob blob2"></div>
+  <div class="blob blob3"></div>
 
   <!-- Transparent image -->
   <img 
@@ -141,22 +143,65 @@
   box-shadow: 0 15px 40px rgba(0,0,0,0.35);
 }
 
-/* Blob styling and animation */
+/* Animated gradient background */
+.animated-gradient-bg {
+  position:absolute;
+  top:0; left:0;
+  width:100%; height:100%;
+  background: linear-gradient(270deg, #ff3cac, #784ba0, #4facfe, #00f2fe, #ffb347);
+  background-size: 1000% 1000%;
+  animation: gradientShift 15s ease infinite;
+  border-radius:20px;
+  z-index:0;
+}
+
+/* Floating blobs */
 .blob {
   position:absolute;
   border-radius:50%;
   z-index:0;
-  animation: float 8s ease-in-out infinite;
+  opacity:0.15;
+  animation: float 8s ease-in-out infinite, colorShift 15s ease infinite;
+  will-change: transform;
 }
 
+.blob1 { top:-50px; left:-50px; width:200px; height:200px; }
+.blob2 { bottom:-50px; right:-60px; width:250px; height:250px; }
+.blob3 { top:20%; right:10%; width:150px; height:150px; }
+
+/* Blob floating animation */
 @keyframes float {
   0% { transform: translateY(0px) translateX(0px); }
   50% { transform: translateY(-20px) translateX(15px); }
   100% { transform: translateY(0px) translateX(0px); }
 }
-</style>
+
+/* Blob color-shifting animation */
+@keyframes colorShift {
+  0%   { background: rgba(255,63,172,0.15); }
+  25%  { background: rgba(120,75,160,0.15); }
+  50%  { background: rgba(79,172,254,0.15); }
+  75%  { background: rgba(0,242,254,0.15); }
+  100% { background: rgba(255,179,71,0.15); }
+}
+
+/* Animated gradient background */
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
 </style>
 
+<script>
+// Parallax scrolling for blobs
+window.addEventListener('scroll', () => {
+  const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+  document.querySelector('.blob1').style.transform = `translateY(${scrollTop * 0.05}px) translateX(0px)`;
+  document.querySelector('.blob2').style.transform = `translateY(${scrollTop * 0.08}px) translateX(0px)`;
+  document.querySelector('.blob3').style.transform = `translateY(${scrollTop * 0.03}px) translateX(0px)`;
+});
+</script>
 </section>
 
 <header>
@@ -271,6 +316,7 @@ tsParticles.load("ai-particles",{
 
 </body>
 </html>
+
 
 
 

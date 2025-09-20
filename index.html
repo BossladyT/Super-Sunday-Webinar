@@ -106,13 +106,14 @@
 </section>
 <section style="position:relative; 
                 text-align:center; 
-                padding:60px 20px; 
                 border-radius:20px; 
                 max-width:900px; 
                 margin:50px auto; 
                 overflow:hidden; 
-                box-shadow: 0 10px 30px rgba(0,0,0,0.25);">
-
+                box-shadow: 0 10px 30px rgba(0,0,0,0.25); 
+                min-height:550px; 
+                padding:20px 20px 120px 20px;">
+  
   <!-- Animated gradient background -->
   <div class="animated-gradient-bg"></div>
 
@@ -128,44 +129,59 @@
   <!-- Soft glow behind the image -->
   <div class="image-glow"></div>
 
-  <!-- Transparent image -->
+  <!-- Transparent image anchored to bottom -->
   <img 
     src="https://i.imgur.com/7YCXOyT.png" 
-    alt="Transparent Image" 
+    alt="Dennis" 
     class="hover-img">
 </section>
 
 <style>
-/* Responsive and hover image */
+/* Section */
+section {
+  position: relative;
+  text-align: center;
+  border-radius: 20px;
+  max-width: 900px;
+  margin: 50px auto;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+  min-height: 550px;
+  padding: 20px 20px 120px 20px; /* extra bottom padding for image */
+}
+
+/* Responsive and hover image anchored to bottom */
 .hover-img {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
   max-width: 400px;   /* desktop limit */
   width: 80%;         /* mobile scaling */
   height: auto;
-  display: block;
-  margin: 0 auto;
   border-radius: 10px;
-  position: relative;
   z-index: 3;  /* above blobs, glow, and sparkles */
   transition: all 0.3s ease;
 }
 
 .hover-img:hover {
-  transform: scale(1.08);
+  transform: translateX(-50%) scale(1.08);
   box-shadow: 0 15px 40px rgba(0,0,0,0.35);
 }
 
 /* Soft radial glow behind the image */
 .image-glow {
   position: absolute;
-  top: 50%;
+  bottom: -20px; /* aligns glow with image bottom */
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translateX(-50%);
   width: 420px;
   height: 420px;
   background: radial-gradient(circle, rgba(255,255,255,0.2), rgba(0,0,0,0));
   border-radius: 50%;
-  filter: blur(60px);
+  filter: blur(50px);
   z-index: 2; /* behind image but above blobs */
+  will-change: transform, opacity;
 }
 
 /* Animated gradient background */
@@ -173,11 +189,12 @@
   position:absolute;
   top:0; left:0;
   width:100%; height:100%;
-  background: linear-gradient(270deg, #e05bac, #784ba0, #4facfe, #00f2fe, #ffb347); 
+  background: linear-gradient(270deg, #e05bac, #784ba0, #4facfe, #00f2fe, #ffb347);
   background-size: 1000% 1000%;
   animation: gradientShift 15s ease infinite;
   border-radius:20px;
   z-index:0;
+  will-change: background-position;
 }
 
 /* Floating blobs */
@@ -185,10 +202,10 @@
   position:absolute;
   border-radius:50%;
   opacity:0.35;
-  filter: blur(40px);
+  filter: blur(35px);
   z-index:1;
   animation: float 10s ease-in-out infinite, colorShift 15s ease infinite;
-  will-change: transform;
+  will-change: transform, opacity;
 }
 
 /* Blob layers */
@@ -234,12 +251,13 @@
 /* Sparkle dots */
 .sparkle {
   position: absolute;
-  width: 4px;
-  height: 4px;
+  width: 3px;
+  height: 3px;
   border-radius: 50%;
   background: rgba(255,255,255,0.8);
   opacity: 0.8;
   animation: sparkleMove linear infinite;
+  will-change: transform, opacity;
 }
 
 /* Sparkle movement */
@@ -248,32 +266,50 @@
   50% { opacity: 0.5; }
   100% { transform: translateY(-600px) translateX(50px); opacity: 0; }
 }
+
+/* Responsive adjustments */
+@media screen and (max-width: 768px) {
+  section {
+    padding-bottom: 80px; 
+    min-height: 400px;
+  }
+}
 </style>
 
 <script>
-// Parallax scrolling for blobs without breaking CSS animations
-window.addEventListener('scroll', () => {
+// Throttle helper to optimize scroll events
+function throttle(fn, wait){
+  let time = Date.now();
+  return function(){
+    if ((time + wait - Date.now()) < 0) {
+      fn();
+      time = Date.now();
+    }
+  }
+}
+
+// Parallax scrolling for blobs
+window.addEventListener('scroll', throttle(() => {
   const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
   document.querySelector('.layer1').style.transform = `translateY(${scrollTop * 0.03}px)`;
   document.querySelector('.layer2').style.transform = `translateY(${scrollTop * 0.05}px)`;
   document.querySelector('.layer3').style.transform = `translateY(${scrollTop * 0.02}px)`;
   document.querySelector('.layer4').style.transform = `translateY(${scrollTop * 0.04}px)`;
-});
+}, 16)); // throttled to ~60fps
 
-// Generate sparkles
+// Generate sparkles (optimized to 35)
 const sparkleContainer = document.querySelector('.sparkle-container');
-for(let i=0; i<50; i++) {
+for(let i=0; i<35; i++) {
   const sparkle = document.createElement('div');
   sparkle.className = 'sparkle';
   sparkle.style.top = `${Math.random()*100}%`;
   sparkle.style.left = `${Math.random()*100}%`;
-  sparkle.style.width = `${Math.random()*4 + 2}px`;
+  sparkle.style.width = `${Math.random()*3 + 2}px`;
   sparkle.style.height = sparkle.style.width;
   sparkle.style.animationDuration = `${Math.random()*5 + 5}s`;
   sparkleContainer.appendChild(sparkle);
 }
 </script>
-
 </section>
 
 <header>
@@ -388,6 +424,7 @@ tsParticles.load("ai-particles",{
 
 </body>
 </html>
+
 
 
 

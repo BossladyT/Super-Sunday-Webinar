@@ -13,22 +13,25 @@
   * {margin:0; padding:0; box-sizing:border-box; font-family: Montserrat, sans-serif;}
   body {
     min-height:100vh; color:#fff; overflow-x:hidden;
-    background: linear-gradient(270deg, #000000, #003b46, #ffcc00, #800080);
+    background: linear-gradient(270deg, #000000, #003b46, #ffcc00, #6a1b9a);
     background-size: 800% 800%; 
     animation: gradientFlow 20s ease infinite; 
     position: relative;
   }
-  @keyframes gradientFlow {0% {background-position:0% 50%;}50% {background-position:100% 50%;}100% {background-position:0% 50%;}}
+  @keyframes gradientFlow {
+    0% {background-position:0% 50%;}
+    50% {background-position:100% 50%;}
+    100% {background-position:0% 50%;}
+  }
 
   .hero {text-align:center; padding:60px 20px 40px 20px; position:relative; overflow:visible;}
   #ai-particles {position:absolute; top:0; left:0; width:100%; height:100%; z-index:0; pointer-events:none;}
 
   .hero h1 {
     font-size:3rem; font-weight:900;
-    background: linear-gradient(90deg, #ffcc00, #00e5ff, #ff6f00, #ffffff);
+    background: linear-gradient(90deg, #ffcc00, #00e5ff, #ffffff);
     -webkit-background-clip:text; -webkit-text-fill-color:transparent;
-    animation: gradient-wave 6s linear infinite; display:inline-block; padding:10px 20px; border-radius:10px;
-    position:relative; z-index:1;
+    animation: gradient-wave 6s linear infinite; display:inline-block; padding:10px 20px; border-radius:10px; position:relative; z-index:1;
   }
   @keyframes gradient-wave {0%{background-position:0% 50%;}50%{background-position:100% 50%;}100%{background-position:0% 50%;}}
   .hero p {font-size:1.15rem; margin-top:15px; font-weight:500; color:#e0f7fa; position:relative; z-index:1;}
@@ -37,9 +40,12 @@
   .timer {background:rgba(0,0,0,0.6); padding:20px 30px; border-radius:15px; text-align:center; font-size:1.5rem;
          min-width:180px; border:2px solid #00e5ff; box-shadow:0 0 15px #00e5ff,0 0 30px #00e5ff,0 0 50px #00e5ff;
          animation: neonPulse 1.5s ease-in-out infinite alternate; position:relative; z-index:1;}
-  .timer h2 {font-size:1.2rem; margin-bottom:10px; font-weight:bold; color:#ff9100;}
+  .timer h2 {font-size:1.2rem; margin-bottom:10px; font-weight:bold; color:#ffcc00;}
   .timer p {font-size:2rem; font-weight:bold; color:#ff6f00;}
-  @keyframes neonPulse {from {box-shadow:0 0 10px #00e5ff,0 0 20px #00e5ff,0 0 30px #00e5ff;} to {box-shadow:0 0 20px #ff9100,0 0 40px #ff9100,0 0 60px #ff9100;}}
+  @keyframes neonPulse {
+    from {box-shadow:0 0 10px #00e5ff,0 0 20px #00e5ff,0 0 30px #00e5ff;}
+    to {box-shadow:0 0 20px #ff9100,0 0 40px #ff9100,0 0 60px #ff9100;}
+  }
 
   .countries {display:flex; flex-wrap:wrap; justify-content:center; gap:15px; margin:40px 10px; position:relative; z-index:1;}
   .country-tab {display:flex; flex-direction:column; align-items:center; justify-content:center; width:140px;
@@ -48,44 +54,16 @@
   .country-tab img {width:44px; height:28px; margin-bottom:6px; border-radius:3px;}
   .country-tab span {margin-top:6px; font-size:0.9rem; color:#ff9100;}
 
-  /* IMAGE SECTION - Responsive */
   .image-section {text-align:center; padding:26px 20px; position:relative; z-index:1;}
-  .image-section img {
-    width:100%;
-    max-width:800px;
-    height:auto;
-    object-fit:cover;
-    border-radius:12px;
-    box-shadow:0 6px 25px rgba(0,229,255,0.3);
-    display:block;
-    margin:0 auto;
-  }
+  .image-section img {max-width:92%; height:auto; border-radius:12px; box-shadow:0 6px 25px rgba(0,229,255,0.3); display:block; margin:0 auto;}
 
   .join-section {text-align:center; margin:50px 0; position:relative; z-index:1;}
   .join-section h2 {font-size:1.9rem; margin-bottom:18px; color:#ffcc80;}
-
-  /* Glow effect for "Yes, I will be there" button */
-  .join-yes {
-    background:#00e5ff; color:#000; position:relative; z-index:1;
-    box-shadow: 0 0 10px #00e5ff, 0 0 20px #00e5ff, 0 0 30px #00e5ff;
-    transition:0.3s; border:none; border-radius:10px; padding:15px 25px; font-size:1rem; font-weight:bold; cursor:pointer;
-  }
-  .join-yes::after {
-    content:"";
-    position:absolute;
-    top:-5px; left:-5px;
-    width:calc(100% + 10px);
-    height:calc(100% + 10px);
-    border-radius:12px;
-    background: rgba(0,229,255,0.3);
-    z-index:-1;
-    filter: blur(12px);
-    animation: glowPulse 1.8s ease-in-out infinite alternate;
-  }
-  @keyframes glowPulse {0% { opacity:0.4; transform: scale(1); } 50% { opacity:0.6; transform: scale(1.05); } 100% { opacity:0.4; transform: scale(1); }}
+  .join-section button {padding:15px 25px; margin:10px; border:none; border-radius:10px; font-size:1rem; font-weight:bold;
+                        cursor:pointer; transition:0.25s; position:relative; z-index:1;}
+  .join-yes {background:#00e5ff; color:#000; box-shadow:0 0 20px #00e5ff, 0 0 30px #00e5ff, 0 0 40px #00e5ff;}
   .join-yes:hover {transform:scale(1.04); background:#00b8d4;}
-
-  .join-no {background:#ff6f00; color:#fff; border:none; border-radius:10px; padding:15px 25px; font-size:1rem; font-weight:bold; cursor:pointer;}
+  .join-no {background:#ff6f00; color:#fff;}
   .join-no:hover {transform:scale(1.04); background:#ff9100;}
 
   .app-download {text-align:center; margin:30px 0; position:relative; z-index:1;}
@@ -95,13 +73,13 @@
 
   .carousel-container {position:fixed; bottom:0; width:100%; overflow:hidden; background:rgba(0,0,0,0.55); padding:10px 0; z-index:1;}
   .carousel {display:flex; gap:15px; animation: scroll-left 50s linear infinite;}
-  .carousel-item {background: linear-gradient(45deg,#000000,#003b46,#0097a7,#ff6f00); border:2px solid rgba(0,229,255,0.9);
+  .carousel-item {background: linear-gradient(45deg,#000000,#003b46,#00e5ff,#ff6f00); border:2px solid rgba(0,229,255,0.9);
                   border-radius:10px; padding:10px 20px; font-weight:800; white-space:nowrap; color:#fff;
                   box-shadow:0 0 10px rgba(0,229,255,0.25);}
   @keyframes scroll-left {0%{transform:translateX(0);}100%{transform:translateX(-50%);}}
 
   @media (max-width:1024px) { .country-tab{width:130px;} }
-  @media (max-width:768px) { 
+  @media (max-width:768px) {
     .timers{flex-direction:column; gap:20px;} 
     .country-tab{width:100px;font-size:0.8rem;}
     .hero h1 {font-size:2.1rem;}
@@ -123,16 +101,12 @@
   <p>For some exciting updates and major news on this Super Sunday Special Session. Do not Miss It!</p>
 </section>
 
-<!-- Image Section -->
-<!-- Added Image Section -->
+<!-- Updated Image Section -->
 <section class="image-section">
   <img src="https://i.imgur.com/fiSwwkS.png" 
        alt="Voidara Opportunity" 
-       loading="lazy"
-       style="max-width:92%; height:auto; border-radius:12px; box-shadow:0 6px 25px rgba(0,229,255,0.3); display:block; margin:0 auto;">
+       loading="lazy">
 </section>
-</section>
-
 
 <header>
   <h1 style="text-align:center; color:#ff9100; margin-top:12px;">SUPER SUNDAY STARTS IN</h1>
@@ -244,3 +218,5 @@ tsParticles.load("ai-particles",{
 
 </body>
 </html>
+
+

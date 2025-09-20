@@ -49,14 +49,16 @@
   .country-tab span {margin-top:6px; font-size:0.9rem; color:#ff9100;}
 
   /* IMAGE SECTION - Responsive */
-  .<!-- Added Image Section -->
-<section class="image-section">
-  <img src="https://i.imgur.com/fiSwwkS.png" 
-       alt="Voidara Opportunity" 
-       loading="lazy"
-       style="max-width:92%; height:auto; border-radius:12px; box-shadow:0 6px 25px rgba(0,229,255,0.3); display:block; margin:0 auto;">
-</section>
-
+  .image-section {text-align:center; padding:26px 20px; position:relative; z-index:1;}
+  .image-section img {
+    width:100%;
+    max-width:800px;
+    height:auto;
+    object-fit:cover;
+    border-radius:12px;
+    box-shadow:0 6px 25px rgba(0,229,255,0.3);
+    display:block;
+    margin:0 auto;
   }
 
   .join-section {text-align:center; margin:50px 0; position:relative; z-index:1;}
@@ -122,11 +124,13 @@
 </section>
 
 <!-- Image Section -->
-<section class="image-section" style="text-align:center; padding:30px 20px;">
-  <img src="https://i.imgur.com/ZvlDYee.jpeg" 
-       alt="Dennis speaking" 
-       style="width:100%; max-width:450px; height:auto; border-radius:12px; box-shadow:0 6px 25px rgba(0,191,174,0.4); display:block; margin:0 auto;" 
-       loading="lazy">
+<!-- Added Image Section -->
+<section class="image-section">
+  <img src="https://i.imgur.com/fiSwwkS.png" 
+       alt="Voidara Opportunity" 
+       loading="lazy"
+       style="max-width:92%; height:auto; border-radius:12px; box-shadow:0 6px 25px rgba(0,229,255,0.3); display:block; margin:0 auto;">
+</section>
 </section>
 
 
@@ -240,4 +244,3 @@ tsParticles.load("ai-particles",{
 
 </body>
 </html>
-

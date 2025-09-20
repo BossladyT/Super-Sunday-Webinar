@@ -13,17 +13,12 @@
   * {margin:0; padding:0; box-sizing:border-box; font-family: Montserrat, sans-serif;}
   body {
     min-height:100vh; color:#fff; overflow-x:hidden;
-    /* New palette: black background with turquoise + orange flow */
-    background: linear-gradient(270deg, #000000, #003b46, #0097a7, #ff6f00);
+    background: linear-gradient(270deg, #004c4c, #000000, #ff8c00, #66e0e0);
     background-size: 800% 800%; 
     animation: gradientFlow 20s ease infinite; 
     position: relative;
   }
-  @keyframes gradientFlow {
-    0% {background-position:0% 50%;}
-    50% {background-position:100% 50%;}
-    100% {background-position:0% 50%;}
-  }
+  @keyframes gradientFlow {0%{background-position:0% 50%;}50%{background-position:100% 50%;}100%{background-position:0% 50%;}}
 
   .hero {
     text-align:center; 
@@ -31,98 +26,93 @@
     position:relative; 
     overflow:visible;
   }
-  #ai-particles {
-    position:absolute; top:0; left:0; width:100%; height:100%; z-index:0; pointer-events:none;
-  }
+  #ai-particles, #page-particles {position:absolute; top:0; left:0; width:100%; height:100%; z-index:0; pointer-events:none;}
 
   .hero h1 {
     font-size:3rem; font-weight:900;
-    /* Turquoise + orange shimmer headline */
-    background: linear-gradient(90deg, #ff6f00, #ff9100, #00e5ff, #ffffff);
+    background: linear-gradient(90deg, #ff8c00, #00bfae, #ffffff);
     -webkit-background-clip:text; -webkit-text-fill-color:transparent;
     animation: gradient-wave 6s linear infinite; display:inline-block; padding:10px 20px; border-radius:10px;
     position:relative; z-index:1;
   }
   @keyframes gradient-wave {0%{background-position:0% 50%;}50%{background-position:100% 50%;}100%{background-position:0% 50%;}}
-  .hero p {font-size:1.15rem; margin-top:15px; font-weight:500; color:#e0f7fa; position:relative; z-index:1;}
+  .hero p {font-size:1.15rem; margin-top:15px; font-weight:500; color:#f5e6cc; position:relative; z-index:1;}
 
   .timers {display:flex; justify-content:center; gap:50px; margin:40px 0; position:relative; z-index:1; flex-wrap:wrap;}
   .timer {background:rgba(0,0,0,0.6); padding:20px 30px; border-radius:15px; text-align:center; font-size:1.5rem;
-         min-width:180px; border:2px solid #00e5ff; box-shadow:0 0 15px #00e5ff,0 0 30px #00e5ff,0 0 50px #00e5ff;
+         min-width:180px; border:2px solid #00bfae; box-shadow:0 0 15px #00bfae,0 0 30px #00bfae,0 0 50px #00bfae;
          animation: neonPulse 1.5s ease-in-out infinite alternate; position:relative; z-index:1;}
-  .timer h2 {font-size:1.2rem; margin-bottom:10px; font-weight:bold; color:#ff9100;}
-  .timer p {font-size:2rem; font-weight:bold; color:#ff6f00;}
-  @keyframes neonPulse {
-    from {box-shadow:0 0 10px #00e5ff,0 0 20px #00e5ff,0 0 30px #00e5ff;}
-    to {box-shadow:0 0 20px #ff9100,0 0 40px #ff9100,0 0 60px #ff9100;}
-  }
+  .timer h2 {font-size:1.2rem; margin-bottom:10px; font-weight:bold; color:#ff8c00;}
+  .timer p {font-size:2rem; font-weight:bold; color:#00bfae;}
+  @keyframes neonPulse {from {box-shadow:0 0 10px #00bfae,0 0 20px #00bfae,0 0 30px #00bfae;} to {box-shadow:0 0 20px #ff8c00,0 0 40px #ff8c00,0 0 60px #ff8c00;}}
 
   .countries {display:flex; flex-wrap:wrap; justify-content:center; gap:15px; margin:40px 10px; position:relative; z-index:1;}
   .country-tab {display:flex; flex-direction:column; align-items:center; justify-content:center; width:140px;
-                padding:10px; background:rgba(255,255,255,0.05); border:2px solid rgba(0,229,255,0.4); border-radius:15px;
+                padding:10px; background:rgba(255,255,255,0.06); border:2px solid rgba(0,191,174,0.18); border-radius:15px;
                 text-align:center; font-size:0.95rem; font-weight:700; color:#fff;}
   .country-tab img {width:44px; height:28px; margin-bottom:6px; border-radius:3px;}
-  .country-tab span {margin-top:6px; font-size:0.9rem; color:#ff9100;}
+  .country-tab span {margin-top:6px; font-size:0.9rem; color:#ff8c00;}
 
   .image-section {text-align:center; padding:26px 20px; position:relative; z-index:1;}
-  .image-section img {max-width:92%; height:auto; border-radius:12px; box-shadow:0 6px 25px rgba(0,229,255,0.3); display:inline-block;}
+  .image-section img {
+    width: 100%;
+    max-width: 400px;
+    height: auto;
+    border-radius: 12px;
+    box-shadow: 0 6px 25px rgba(0,191,174,0.3);
+    display: block;
+    margin: 0 auto;
+  }
 
   .join-section {text-align:center; margin:50px 0; position:relative; z-index:1;}
-  .join-section h2 {font-size:1.9rem; margin-bottom:18px; color:#ffcc80;}
+  .join-section h2 {font-size:1.9rem; margin-bottom:18px; color:#ff8c00;}
   .join-section button {padding:15px 25px; margin:10px; border:none; border-radius:10px; font-size:1rem; font-weight:bold;
                         cursor:pointer; transition:0.25s; position:relative; z-index:1;}
-  .join-yes {background:#00e5ff; color:#000;}
-  .join-yes:hover {transform:scale(1.04); background:#00b8d4;}
-  .join-no {background:#ff6f00; color:#fff;}
-  .join-no:hover {transform:scale(1.04); background:#ff9100;}
+  .join-yes {background:#00bfae; color:#000;}
+  .join-yes:hover {transform:scale(1.04); background:#ff8c00;}
+  .join-no {background:#660000; color:#fff;}
+  .join-no:hover {transform:scale(1.04); background:#990000;}
 
   .app-download {text-align:center; margin:30px 0; position:relative; z-index:1;}
-  .app-download p {margin-bottom:15px; font-weight:700; font-size:1rem; color:#e0f7fa;}
+  .app-download p {margin-bottom:15px; font-weight:700; font-size:1rem; color:#ffd700;}
   .app-download a {margin:0 10px; display:inline-block;}
   .app-download img {height:60px; border-radius:8px; background:#fff;}
 
   .carousel-container {position:fixed; bottom:0; width:100%; overflow:hidden; background:rgba(0,0,0,0.55); padding:10px 0; z-index:1;}
-  .carousel {display:flex; gap:15px; animation: scroll-left 10s linear infinite;}
-  .carousel-item {background: linear-gradient(45deg,#000000,#003b46,#0097a7,#ff6f00); border:2px solid rgba(0,229,255,0.9);
+  .carousel {display:flex; gap:15px; animation: scroll-left 50s linear infinite;}
+  .carousel-item {background: linear-gradient(45deg,#00bfae,#000,#ff8c00,#66e0e0); border:2px solid rgba(0,191,174,0.9);
                   border-radius:10px; padding:10px 20px; font-weight:800; white-space:nowrap; color:#fff;
-                  box-shadow:0 0 10px rgba(0,229,255,0.25);}
+                  box-shadow:0 0 10px rgba(0,191,174,0.25);}
   @keyframes scroll-left {0%{transform:translateX(0);}100%{transform:translateX(-50%);}}
 
-
-  @media (max-width:1024px) {
-    .country-tab{width:130px;}
-  }
+  @media (max-width:1024px) { .country-tab{width:130px;} }
   @media (max-width:768px) {
     .timers{flex-direction:column; gap:20px;} 
     .country-tab{width:100px;font-size:0.8rem;}
     .hero h1 {font-size:2.1rem;}
     .hero p {font-size:1rem;}
   }
-
-  .hero h1, .hero p {position:relative; z-index:1;}
 </style>
 
-<!-- tsParticles library -->
 <script src="https://cdn.jsdelivr.net/npm/tsparticles@2/tsparticles.min.js"></script>
 </head>
 <body>
 
-<!-- HERO -->
+<!-- Floating particles container -->
+<div id="page-particles"></div>
+
 <section class="hero">
   <div id="ai-particles"></div>
   <h1>Join the Founder Dennis Nowak</h1>
   <p>For some exciting updates and major news on this Super Sunday Special Session. Do not Miss It!</p>
 </section>
 
-<!-- Added Image Section -->
 <section class="image-section">
-  <img src="https://i.imgur.com/ZvlDYee.jpeg" 
-       alt="Voidara Opportunity" 
-       loading="lazy">
+  <img src="https://i.imgur.com/ZvlDYee.jpeg" alt="Voidara Opportunity" loading="lazy">
 </section>
 
 <header>
-  <h1 style="text-align:center; color:#ff9100; margin-top:12px;">SUPER SUNDAY STARTS IN</h1>
+  <h1 style="text-align:center; color:#ffd700; margin-top:12px;">SUPER SUNDAY STARTS IN</h1>
   <div class="timers">
     <div class="timer">
       <h2>Meeting Countdown</h2>
@@ -131,7 +121,6 @@
   </div>
 </header>
 
-<!-- Countries -->
 <div class="countries">
   <div class="country-tab"><img src="https://flagcdn.com/w80/cr.png" alt="Costa Rica">Costa Rica <span>7:00 AM</span></div>
   <div class="country-tab"><img src="https://flagcdn.com/w80/ky.png" alt="Cayman Islands">Cayman Islands <span>8:00 AM</span></div>
@@ -140,10 +129,8 @@
   <div class="country-tab"><img src="https://flagcdn.com/w80/us.png" alt="USA">USA (NYC) <span>9:00 AM</span></div>
   <div class="country-tab"><img src="https://flagcdn.com/w80/ca.png" alt="Canada">Canada (Montreal) <span>9:00 AM</span></div>
   <div class="country-tab"><img src="https://flagcdn.com/w80/cw.png" alt="Curacao">Curacao <span>9:00 AM</span></div>
-  <div class="country-tab"><img src="https://flagcdn.com/w80/cm.png" alt="Cameroon">Cameroon <span>2:00 PM</span></div>
-  <div class="country-tab"><img src="https://flagcdn.com/w80/gb.png" alt="UK">UK <span>2:00 PM</span></div>
-  <div class="country-tab"><img src="https://flagcdn.com/w80/za.png" alt="South Africa">South Africa <span>3:00 PM</span></div>
-  <div class="country-tab"><img src="https://flagcdn.com/w80/ma.png" alt="Morocco">Morocco <span>2:00 PM</span></div>
+  <div class="country-tab"><img src="https://flagcdn.com/w80/ve.png" alt="Venezuela">Venezuela <span>9:00 AM</span></div>
+  <div class="country-tab"><img src="https://flagcdn.com/w80/br.png" alt="Brazil">Brazil <span>10:00 AM</span></div>
   <div class="country-tab"><img src="https://flagcdn.com/w80/ng.png" alt="Nigeria">Nigeria <span>2:00 PM</span></div>
   <div class="country-tab"><img src="https://flagcdn.com/w80/gh.png" alt="Ghana">Ghana <span>1:00 PM</span></div>
   <div class="country-tab"><img src="https://flagcdn.com/w80/eg.png" alt="Egypt">Egypt <span>4:00 PM</span></div>
@@ -189,7 +176,6 @@
   </div>
 </div>
 
-<!-- Countdown JS -->
 <script>
 function startCountdown(id, targetHour, targetMinute) {
   const el = document.getElementById(id);
@@ -207,24 +193,39 @@ function startCountdown(id, targetHour, targetMinute) {
   updateTimer();
   setInterval(updateTimer,1000);
 }
-startCountdown('timer1', 9, 0); 
-</script>
+startCountdown('timer1', 9, 0);
 
-<!-- tsParticles -->
-<script>
+// Hero particles
 tsParticles.load("ai-particles",{
   fpsLimit:60,
   background:{color:"transparent"},
   particles:{
     number:{value:60,density:{enable:true,area:800}},
-    color:{value:["#00e5ff","#ff6f00","#ff9100"]},
+    color:{value:["#ff8c00","#00bfae","#ffd700"]},
     shape:{type:"circle"},
     opacity:{value:0.55,random:true},
     size:{value:{min:1.2,max:3},random:true},
     move:{enable:true,speed:0.9,direction:"none",random:true,straight:false,outModes:{default:"out"}},
-    links:{enable:true,distance:140,color:"#00e5ff",opacity:0.12,width:1}
+    links:{enable:true,distance:140,color:"#ffd700",opacity:0.12,width:1}
   },
   interactivity:{events:{onHover:{enable:false},onClick:{enable:false}}},
+  detectRetina:true
+});
+
+// Page-wide floating particles with lines
+tsParticles.load("page-particles",{
+  fpsLimit:60,
+  background:{color:"transparent"},
+  particles:{
+    number:{value:50,density:{enable:true,area:900}},
+    color:{value:["#00bfae","#66e0e0","#ff8c00","#ffd700"]},
+    shape:{type:"circle"},
+    opacity:{value:0.4,random:true},
+    size:{value:{min:1,max:3},random:true},
+    move:{enable:true,speed:1,direction:"none",random:true,straight:false,outModes:{default:"out"}},
+    links:{enable:true,distance:120,color:"#00bfae",opacity:0.2,width:1}
+  },
+  interactivity:{events:{onHover:{enable:true,mode:"grab"},onClick:{enable:true,mode:"push"}}},
   detectRetina:true
 });
 </script>

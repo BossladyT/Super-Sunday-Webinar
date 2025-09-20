@@ -19,11 +19,7 @@
     position: relative;
     text-align:center;
   }
-  @keyframes gradientFlow {
-    0% {background-position:0% 50%;}
-    50% {background-position:100% 50%;}
-    100% {background-position:0% 50%;}
-  }
+  @keyframes gradientFlow {0%{background-position:0% 50%;}50%{background-position:100% 50%;}100%{background-position:0% 50%;}}
 
   .hero {text-align:center; padding:60px 20px 40px 20px; position:relative; overflow:visible;}
   #ai-particles {position:absolute; top:0; left:0; width:100%; height:100%; z-index:0; pointer-events:none;}
@@ -37,15 +33,21 @@
   @keyframes gradient-wave {0%{background-position:0% 50%;}50%{background-position:100% 50%;}100%{background-position:0% 50%;}}
   .hero p {font-size:1.15rem; margin-top:15px; font-weight:500; color:#e0f7fa; position:relative; z-index:1;}
 
+  /* Countdown timer */
   .timers {display:flex; justify-content:center; gap:50px; margin:40px 0; position:relative; z-index:1; flex-wrap:wrap;}
-  .timer {background:rgba(0,0,0,0.6); padding:20px 30px; border-radius:15px; text-align:center; font-size:1.5rem;
-         min-width:180px; border:2px solid #00e5ff; box-shadow:0 0 15px #00e5ff,0 0 30px #00e5ff,0 0 50px #00e5ff;
-         animation: neonPulse 1.5s ease-in-out infinite alternate; position:relative; z-index:1;}
-  .timer h2 {font-size:1.2rem; margin-bottom:10px; font-weight:bold; color:#ffcc00;}
-  .timer p {font-size:2rem; font-weight:bold; color:#ff6f00;}
+  .timer {
+    background:rgba(0,0,0,0.7); padding:25px 35px; border-radius:20px; text-align:center; font-size:2rem;
+    min-width:200px; border:3px solid #00e5ff; 
+    box-shadow:0 0 20px #00e5ff,0 0 40px #00e5ff,0 0 60px #00e5ff;
+    animation: neonPulse 1s ease-in-out infinite alternate; font-weight:bold;
+  }
+  .timer h2 {font-size:1.5rem; margin-bottom:15px; font-weight:bold; color:#ffcc00;}
+  .timer p {font-size:3rem; font-weight:bold; color:#ff6f00;}
+
   @keyframes neonPulse {
-    from {box-shadow:0 0 10px #00e5ff,0 0 20px #00e5ff,0 0 30px #00e5ff;}
-    to {box-shadow:0 0 20px #ff9100,0 0 40px #ff9100,0 0 60px #ff9100;}
+    0% {box-shadow:0 0 20px #00e5ff,0 0 40px #00e5ff,0 0 60px #00e5ff;}
+    50% {box-shadow:0 0 25px #ff9100,0 0 50px #ff9100,0 0 80px #ff9100;}
+    100% {box-shadow:0 0 20px #00e5ff,0 0 40px #00e5ff,0 0 60px #00e5ff;}
   }
 
   .countries {display:flex; flex-wrap:wrap; justify-content:center; gap:15px; margin:40px 10px; position:relative; z-index:1;}
@@ -56,25 +58,26 @@
   .country-tab span {margin-top:6px; font-size:0.9rem; color:#ff9100;}
 
   .join-section {text-align:center; margin:50px 0; position:relative; z-index:1;}
-  .join-section h2 {font-size:1.9rem; margin-bottom:18px; color:#ffcc80;}
-  .join-section button {padding:15px 25px; margin:10px; border:none; border-radius:10px; font-size:1rem; font-weight:bold;
-                        cursor:pointer; transition:0.25s; position:relative; z-index:1;}
-  .join-yes {background:#00e5ff; color:#000; box-shadow:0 0 20px #00e5ff, 0 0 30px #00e5ff, 0 0 40px #00e5ff;}
-  .join-yes:hover {transform:scale(1.04); background:#00b8d4;}
-  .join-no {background:#ff6f00; color:#fff;}
-  .join-no:hover {transform:scale(1.04); background:#ff9100;}
+  .join-section h2 {font-size:2rem; margin-bottom:20px; color:#ffcc80;}
+  .join-section button {
+    padding:20px 40px; font-size:1.5rem; font-weight:bold; border:none; border-radius:15px; cursor:pointer;
+    color:#fff; background:#00e5ff; border:4px solid #00b8a9; text-shadow:0 0 10px #00e5ff; 
+    box-shadow:0 0 25px #00e5ff,0 0 40px #00e5ff,0 0 60px #00e5ff;
+    transition:0.25s; z-index:1;
+  }
+  .join-section button:hover {transform:scale(1.05); background:#00b8d4;}
 
   .app-download {text-align:center; margin:30px 0; position:relative; z-index:1;}
   .app-download p {margin-bottom:15px; font-weight:700; font-size:1rem; color:#e0f7fa;}
   .app-download a {margin:0 10px; display:inline-block;}
   .app-download img {height:60px; border-radius:8px; background:#fff;}
 
-  .carousel-container {position:fixed; bottom:0; width:100%; overflow:hidden; background:rgba(0,0,0,0.55); padding:10px 0; z-index:1;}
-  .carousel {display:flex; gap:15px; animation: scroll-left 5s linear infinite;}
+  /* Carousel ticker */
+  .carousel-container {position:fixed; bottom:0; width:100%; overflow:hidden; background:rgba(0,0,0,0.55); padding:5px 0; z-index:999;}
+  .carousel {display:flex; gap:15px; animation: scroll-left 15s linear infinite;}
   .carousel-item {background: linear-gradient(45deg,#000000,#003b46,#00e5ff,#ff6f00); border:2px solid rgba(0,229,255,0.9);
-                  border-radius:10px; padding:10px 20px; font-weight:800; white-space:nowrap; color:#fff;
-                  box-shadow:0 0 10px rgba(0,229,255,0.25);}
-  @keyframes scroll-left {0%{transform:translateX(0);}100%{transform:translateX(-50%);}}
+                  border-radius:10px; padding:8px 15px; font-weight:800; white-space:nowrap; color:#fff; font-size:0.9rem;}
+  @keyframes scroll-left {0%{transform:translateX(100%);}100%{transform:translateX(-100%);}}
 
   @media (max-width:1024px) { .country-tab{width:130px;} }
   @media (max-width:768px) {
@@ -82,6 +85,9 @@
     .country-tab{width:100px;font-size:0.8rem;}
     .hero h1 {font-size:2.1rem;}
     .hero p {font-size:1rem;}
+    .join-section button {padding:15px 30px; font-size:1.2rem;}
+    .timer {font-size:1.5rem;}
+    .timer p {font-size:2rem;}
   }
 
   .hero h1, .hero p {position:relative; z-index:1;}
@@ -144,9 +150,11 @@
   <div class="country-tab"><img src="https://flagcdn.com/w80/my.png" alt="Malaysia">Malaysia <span>9:00 PM</span></div>
 </div>
 
+</div>
+
 <div class="join-section">
   <h2>Seats are limited! Join 10 Minutes Early!</h2>
-  <button class="join-yes" onclick="window.location.href='https://meetn.com/voidara'">Yes, I will be there</button>
+  <button onclick="window.location.href='https://meetn.com/voidara'">Yes, I will be there</button>
 </div>
 
 <div class="app-download">
@@ -194,21 +202,20 @@ tsParticles.load("ai-particles",{
   fpsLimit:60,
   background:{color:"transparent"},
   particles:{
-    number:{value:60,density:{enable:true,area:800}},
-    color:{value:["#00e5ff","#ff6f00","#ff9100"]},
+    number:{value:80,density:{enable:true,area:900}},
+    color:{value:["#00e5ff","#ff6f00","#ff9100","#ffcc00","#6a1b9a"]},
     shape:{type:"circle"},
-    opacity:{value:0.55,random:true},
-    size:{value:{min:1.2,max:3},random:true},
-    move:{enable:true,speed:0.9,direction:"none",random:true,straight:false,outModes:{default:"out"}},
-    links:{enable:true,distance:140,color:"#00e5ff",opacity:0.12,width:1}
+    opacity:{value:0.4,random:true},
+    size:{value:{min:2,max:6},random:true},
+    move:{enable:true,speed:1.2,direction:"none",random:true,straight:false,outModes:{default:"out"}},
+    links:{enable:false}
   },
-  interactivity:{events:{onHover:{enable:false},onClick:{enable:false}}},
+  interactivity:{events:{onHover:{enable:true,mode:"repulse"},onClick:{enable:true,mode:"push"}}},
   detectRetina:true
 });
 </script>
 
 </body>
 </html>
-
 
 

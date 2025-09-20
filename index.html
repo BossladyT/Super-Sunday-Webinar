@@ -137,13 +137,11 @@
 </section>
 
 <style>
-/* Hover effect for main image */
 .hover-img:hover {
   transform: scale(1.08);
   box-shadow: 0 15px 40px rgba(0,0,0,0.35);
 }
 
-/* Animated gradient background */
 .animated-gradient-bg {
   position:absolute;
   top:0; left:0;
@@ -155,7 +153,6 @@
   z-index:0;
 }
 
-/* Floating blobs */
 .blob {
   position:absolute;
   border-radius:50%;
@@ -169,14 +166,12 @@
 .blob2 { bottom:-50px; right:-60px; width:250px; height:250px; }
 .blob3 { top:20%; right:10%; width:150px; height:150px; }
 
-/* Blob floating animation */
 @keyframes float {
   0% { transform: translateY(0px) translateX(0px); }
   50% { transform: translateY(-20px) translateX(15px); }
   100% { transform: translateY(0px) translateX(0px); }
 }
 
-/* Blob color-shifting animation */
 @keyframes colorShift {
   0%   { background: rgba(255,63,172,0.15); }
   25%  { background: rgba(120,75,160,0.15); }
@@ -185,7 +180,6 @@
   100% { background: rgba(255,179,71,0.15); }
 }
 
-/* Animated gradient background */
 @keyframes gradientShift {
   0% { background-position: 0% 50%; }
   50% { background-position: 100% 50%; }
@@ -194,12 +188,12 @@
 </style>
 
 <script>
-// Parallax scrolling for blobs
+// Parallax scrolling without breaking float animation
 window.addEventListener('scroll', () => {
   const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-  document.querySelector('.blob1').style.transform = `translateY(${scrollTop * 0.05}px) translateX(0px)`;
-  document.querySelector('.blob2').style.transform = `translateY(${scrollTop * 0.08}px) translateX(0px)`;
-  document.querySelector('.blob3').style.transform = `translateY(${scrollTop * 0.03}px) translateX(0px)`;
+  document.querySelector('.blob1').style.transform = `translateY(${scrollTop * 0.05}px)`;
+  document.querySelector('.blob2').style.transform = `translateY(${scrollTop * 0.08}px)`;
+  document.querySelector('.blob3').style.transform = `translateY(${scrollTop * 0.03}px)`;
 });
 </script>
 </section>
@@ -316,6 +310,7 @@ tsParticles.load("ai-particles",{
 
 </body>
 </html>
+
 
 
 

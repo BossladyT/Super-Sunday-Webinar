@@ -102,17 +102,18 @@
 <section class="hero">
   <div id="ai-particles"></div>
   <h1>Join the Founder Dennis Nowak</h1>
-  <p>He is bringing the heat with EXCITING UPDATES and MAJOR NEWS on this Super Sunday Special Session. Do not Miss It!</p>
+  <p>He is bringing the heat with EXCITING UPDATES and MAJOR NEWS on this Super Sunday Special Session. 
+  <p> Do not Miss It!</p>
 </section>
-<section style="position:relative; 
+<<section style="position:relative; 
                 text-align:center; 
                 border-radius:20px; 
                 max-width:900px; 
                 margin:50px auto; 
                 overflow:hidden; 
                 box-shadow: 0 10px 30px rgba(0,0,0,0.25); 
-                min-height:550px; 
-                padding:20px 20px 120px 20px;">
+                padding:20px 20px 40px 20px; 
+                min-height:auto;">
   
   <!-- Animated gradient background -->
   <div class="animated-gradient-bg"></div>
@@ -146,8 +147,8 @@ section {
   margin: 50px auto;
   overflow: hidden;
   box-shadow: 0 10px 30px rgba(0,0,0,0.25);
-  min-height: 550px;
-  padding: 20px 20px 120px 20px; /* extra bottom padding for image */
+  padding: 20px 20px 40px 20px; /* smaller bottom padding for compact tab */
+  min-height: auto; /* height determined by content */
 }
 
 /* Responsive and hover image anchored to bottom */
@@ -172,14 +173,14 @@ section {
 /* Soft radial glow behind the image */
 .image-glow {
   position: absolute;
-  bottom: -20px; /* aligns glow with image bottom */
+  bottom: -10px; /* aligns glow with image bottom */
   left: 50%;
   transform: translateX(-50%);
-  width: 420px;
-  height: 420px;
+  width: 350px;
+  height: 350px;
   background: radial-gradient(circle, rgba(255,255,255,0.2), rgba(0,0,0,0));
   border-radius: 50%;
-  filter: blur(50px);
+  filter: blur(40px);
   z-index: 2; /* behind image but above blobs */
   will-change: transform, opacity;
 }
@@ -270,8 +271,22 @@ section {
 /* Responsive adjustments */
 @media screen and (max-width: 768px) {
   section {
-    padding-bottom: 80px; 
-    min-height: 400px;
+    padding-bottom: 60px; 
+    min-height: 380px;
+  }
+  .image-glow {
+    width: 250px;
+    height: 250px;
+    bottom: -5px;
+  }
+  .hover-img {
+    max-width: 300px;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  section {
+    min-height: 420px;  /* snug fit around image */
   }
 }
 </style>
@@ -310,6 +325,7 @@ for(let i=0; i<35; i++) {
   sparkleContainer.appendChild(sparkle);
 }
 </script>
+
 </section>
 
 <header>
@@ -424,6 +440,7 @@ tsParticles.load("ai-particles",{
 
 </body>
 </html>
+
 
 
 

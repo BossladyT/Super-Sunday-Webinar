@@ -79,33 +79,13 @@
                   border-radius:10px; padding:8px 15px; font-weight:800; white-space:nowrap; color:#fff; font-size:0.9rem;}
   @keyframes scroll-left {0%{transform:translateX(100%);}100%{transform:translateX(-100%);}}
 
-  /* Landing Tab & Image */
-  .landing-tab {
-    position: relative;
-    width: 100%;
-    max-width: 1200px;
-    margin: 0 auto;
-    text-align: center;
-    padding: 40px 20px;
-  }
+  /* Hero image / Dennis pic */
+  .landing-tab {position:relative; width:100%; display:flex; justify-content:center; margin-top:20px;}
+  .landing-tab img.hover-img {max-width:90%; width:450px; height:auto; border-radius:15px; box-shadow:0 0 50px #00e5ff;}
+  /* adjust for mobile */
+  @media (max-width:768px) { .landing-tab img.hover-img {width:80%;} }
 
-  .landing-tab img.hover-img {
-    width: 100%;
-    max-width: 500px;
-    height: auto;
-    border-radius: 15px;
-    box-shadow: 0 0 25px #00e5ff, 0 0 50px #00e5ff, 0 0 75px #00e5ff;
-    transition: transform 0.3s ease;
-  }
-
-  .landing-tab img.hover-img:hover {
-    transform: scale(1.05);
-  }
-
-  @media (max-width:1024px) {
-    .landing-tab img.hover-img { max-width:400px; }
-    .country-tab{width:130px;}
-  }
+  @media (max-width:1024px) { .country-tab{width:130px;} }
   @media (max-width:768px) {
     .timers{flex-direction:column; gap:20px;} 
     .country-tab{width:100px;font-size:0.8rem;}
@@ -114,7 +94,6 @@
     .join-section button {padding:15px 30px; font-size:1.2rem;}
     .timer {font-size:1.5rem;}
     .timer p {font-size:2rem;}
-    .landing-tab img.hover-img { max-width:300px; }
   }
 
   .hero h1, .hero p {position:relative; z-index:1;}
@@ -133,53 +112,12 @@
   <p>Do not Miss It!</p>
 </section>
 
-<!-- Landing Image with Effects -->
+<!-- Dennis Image Section -->
 <section class="landing-tab">
-  <div class="animated-gradient-bg"></div>
-  <div class="blob layer1"></div>
-  <div class="blob layer2"></div>
-  <div class="blob layer3"></div>
-  <div class="blob layer4"></div>
-  <div class="sparkle-container"></div>
-  <div class="image-glow"></div>
   <img src="https://i.imgur.com/7YCXOyT.png" alt="Dennis" class="hover-img">
 </section>
 
-<script>
-// Throttle helper
-function throttle(fn, wait){
-  let time = Date.now();
-  return function(){
-    if ((time + wait - Date.now()) < 0) {
-      fn();
-      time = Date.now();
-    }
-  }
-}
-
-// Parallax blobs
-window.addEventListener('scroll', throttle(() => {
-  const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-  document.querySelector('.layer1').style.transform = `translateY(${scrollTop * 0.03}px)`;
-  document.querySelector('.layer2').style.transform = `translateY(${scrollTop * 0.05}px)`;
-  document.querySelector('.layer3').style.transform = `translateY(${scrollTop * 0.02}px)`;
-  document.querySelector('.layer4').style.transform = `translateY(${scrollTop * 0.04}px)`;
-}, 16));
-
-// Generate sparkles
-const sparkleContainer = document.querySelector('.sparkle-container');
-for(let i=0;i<35;i++){
-  const sparkle = document.createElement('div');
-  sparkle.className='sparkle';
-  sparkle.style.top=`${Math.random()*100}%`;
-  sparkle.style.left=`${Math.random()*100}%`;
-  sparkle.style.width=`${Math.random()*3 + 2}px`;
-  sparkle.style.height=sparkle.style.width;
-  sparkle.style.animationDuration=`${Math.random()*5+5}s`;
-  sparkleContainer.appendChild(sparkle);
-}
-</script>
-
+<!-- Countdown Timer -->
 <header>
   <h1 style="text-align:center; color:#ff9100; margin-top:12px;">SUPER SUNDAY STARTS IN</h1>
   <div class="timers">
@@ -225,56 +163,48 @@ for(let i=0;i<35;i++){
   <div class="country-tab"><img src="https://flagcdn.com/w80/my.png" alt="Malaysia">Malaysia <span>9:00 PM</span></div>
 </div>
 
+<!-- Join Section -->
 <div class="join-section">
   <h2>Seats are limited! Join 10 Minutes Early!</h2>
   <button onclick="window.location.href='https://meetn.com/voidara'">Yes, I will be there</button>
 </div>
 
+<!-- App Download -->
 <div class="app-download">
   <p>Don't have the MeetN App? Click download NOW</p>
   <a href="https://play.google.com/store/apps/details?id=com.meetn.app" target="_blank"><img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" alt="Download on Play Store" /></a>
   <a href="https://apps.apple.com/us/app/meetn/id1667855552" target="_blank"><img src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg" alt="Download on App Store" /></a>
 </div>
 
+<!-- Carousel -->
 <div class="carousel-container">
   <div class="carousel">
     <div class="carousel-item">20% Direct Bonus</div>
     <div class="carousel-item">20% Matching Bonus</div>
     <div class="carousel-item">10% Binary Bonus</div>
     <div class="carousel-item">10% Global Profit Pools</div>
-    <div class="carousel-item">Extra Rewards Daily!</div>
-    <div class="carousel-item">Join Dennis Today!</div>
+    <div class="carousel-item">20% Agent Bonus</div>
+    <div class="carousel-item">Rank Rewards</div>
+    <div class="carousel-item">30% Subscription Bonus</div>
   </div>
 </div>
 
-<script>
-  // Countdown Timer
- <!-- Countdown JS for recurring Sunday meeting -->
+<!-- Countdown Timer JS -->
 <script>
 function startCountdown(id, meetingHourUTC=13, meetingMinuteUTC=0) {
-  // meetingHourUTC = hour in UTC for the meeting (e.g., 9 AM Trinidad = 13 UTC)
   const el = document.getElementById(id);
 
   function updateTimer() {
     const now = new Date();
     
-    // Find next Sunday
-    const nextSunday = new Date(Date.UTC(
-      now.getUTCFullYear(),
-      now.getUTCMonth(),
-      now.getUTCDate(),
-      0,0,0
-    ));
-    
-    // Days until next Sunday (0=Sunday,1=Monday,...6=Saturday)
+    // Next Sunday
+    const nextSunday = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate(), 0,0,0));
     const day = nextSunday.getUTCDay();
     const daysUntilSunday = (7 - day) % 7;
     nextSunday.setUTCDate(nextSunday.getUTCDate() + daysUntilSunday);
-    
-    // Set meeting time
     nextSunday.setUTCHours(meetingHourUTC, meetingMinuteUTC, 0, 0);
 
-    // Calculate remaining time
+    // Remaining time
     let diff = nextSunday - now;
     let h = Math.floor(diff / 1000 / 60 / 60);
     let m = Math.floor(diff / 1000 / 60) % 60;
@@ -287,53 +217,30 @@ function startCountdown(id, meetingHourUTC=13, meetingMinuteUTC=0) {
   setInterval(updateTimer, 1000);
 }
 
-// Call it: 9 AM Trinidad = 13 UTC
+// Start countdown (9 AM Trinidad = 13 UTC)
 startCountdown('timer1', 13, 0);
 </script>
 
-
-  // tsParticles
-  tsParticles.load("ai-particles", {
-    background: { color: { value: "transparent" } },
-    fpsLimit: 60,
-    particles: {
-      number: { value: 80, density: { enable: true, area: 800 } },
-      color: { value: ["#00e5ff","#ffcc00","#ff6f00","#ffffff"] },
-      shape: { type: "circle" },
-      opacity: { value: 0.7, random: true },
-      size: { value: 3, random: true },
-      move: { enable: true, speed: 1.5, direction: "none", outMode: "bounce" },
-      links: { enable: true, distance: 120, color: "#00e5ff", opacity:0.3, width:1 }
-    },
-    interactivity: {
-      events: {
-        onhover: { enable: true, mode: "repulse" },
-        onclick: { enable: true, mode: "push" }
-      },
-      modes: { repulse: { distance: 100 }, push: { quantity: 4 } }
-    },
-    detectRetina: true
-  });
+<!-- tsParticles -->
+<script>
+tsParticles.load("ai-particles", {
+  fpsLimit: 60,
+  particles: {
+    number: {value:40, density:{enable:true, value_area:800}},
+    color:{value:"#ffffff"},
+    shape:{type:"circle"},
+    opacity:{value:0.8, random:true},
+    size:{value:3, random:true},
+    move:{enable:true, speed:1, direction:"none", random:true, straight:false, out_mode:"out"}
+  },
+  interactivity: {
+    detectsOn:"canvas",
+    events: {onhover:{enable:true, mode:"repulse"}, onclick:{enable:true, mode:"push"}, resize:true},
+    modes:{repulse:{distance:100, duration:0.4}, push:{particles_nb:4}}
+  },
+  retina_detect:true
+});
 </script>
 
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

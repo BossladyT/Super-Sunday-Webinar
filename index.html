@@ -384,23 +384,31 @@ for(let i=0;i<35;i++){
 
 <!-- Countdown JS -->
 <script>
-function startCountdown(id, targetHour, targetMinute) {
+<script>
+function startCountdown(id, targetDateTimeUTC) {
   const el = document.getElementById(id);
   function updateTimer() {
-    const now = new Date();
-    let target = new Date();
-    target.setHours(targetHour, targetMinute, 0, 0);
-    if(now > target){ target.setDate(target.getDate() + 1); }
-    let diff = target - now;
+    const now = new Date().getTime();
+    const diff = targetDateTimeUTC - now;
+    if (diff <= 0) {
+      el.innerHTML = "The meeting has started!";
+      return;
+    }
     let hours = Math.floor(diff / (1000*60*60));
     let minutes = Math.floor((diff % (1000*60*60)) / (1000*60));
     let seconds = Math.floor((diff % (1000*60)) / 1000);
-    el.innerHTML = `${String(hours).padStart(2,'0')}:${String(minutes).padStart(2,'0')}:${String(seconds).padStart(2,'0')}`;
+    el.innerHTML =
+      `${String(hours).padStart(2,'0')}:` +
+      `${String(minutes).padStart(2,'0')}:` +
+      `${String(seconds).padStart(2,'0')}`;
   }
   updateTimer();
-  setInterval(updateTimer,1000);
+  setInterval(updateTimer, 1000);
 }
-startCountdown('timer1', 9, 0); 
+
+// Meeting time: Sept 21, 2025 @ 9:00 AM Trinidad (13:00 UTC)
+const meetingTime = new Date("2025-09-21T13:00:00Z").getTime();
+startCountdown('timer1', meetingTime);
 </script>
 
 <!-- tsParticles -->
@@ -424,6 +432,7 @@ tsParticles.load("ai-particles",{
 
 </body>
 </html>
+
 
 
 

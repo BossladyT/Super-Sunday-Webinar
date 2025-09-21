@@ -102,179 +102,20 @@
 <section class="hero">
   <div id="ai-particles"></div>
   <h1>Join the Founder Dennis Nowak</h1>
-  <p>He is bringing the heat with EXCITING UPDATES and MAJOR NEWS on this Super Sunday Special Session. 
-
-<p> Do not Miss It!</p>
-
+  <p>He is bringing the heat with EXCITING UPDATES and MAJOR NEWS on this Super Sunday Special Session. </p>
+  <p>Do not Miss It!</p>
 </section>
+
 <section class="landing-tab">
-
-  <!-- Custom shaped gradient background tab -->
   <div class="animated-gradient-bg"></div>
-
-  <!-- Layered blobs -->
   <div class="blob layer1"></div>
   <div class="blob layer2"></div>
   <div class="blob layer3"></div>
   <div class="blob layer4"></div>
-
-  <!-- Sparkles -->
   <div class="sparkle-container"></div>
-
-  <!-- Glow behind image -->
   <div class="image-glow"></div>
-
-  <!-- Image anchored at bottom -->
-  <img 
-    src="https://i.imgur.com/7YCXOyT.png" 
-    alt="Dennis" 
-    class="hover-img">
+  <img src="https://i.imgur.com/7YCXOyT.png" alt="Dennis" class="hover-img">
 </section>
-
-<style>
-/* Section */
-.landing-tab {
-  position: relative;
-  text-align: center;
-  max-width: 900px;
-  margin: 50px auto;
-  overflow: visible;
-  padding: 20px 20px 50px 20px;
-  min-height: 500px;
-}
-
-/* Custom contour gradient background tab */
-.animated-gradient-bg {
-  position:absolute;
-  top:0; left:0;
-  width:100%; height:100%;
-  background: linear-gradient(260deg, #ff6ec7, #7851a9, #4facfe, #00f2fe, #ffb347);
-  background-size: 1200% 1200%;
-  animation: gradientShift 15s ease infinite;
-  border-radius: 30px;
-  clip-path: polygon(
-    0% 0%, 100% 0%, 
-    100% 70%, 75% 75%, 
-    65% 88%, 55% 95%, 
-    45% 95%, 35% 88%, 
-    25% 75%, 0% 70%
-  ); /* Refined contour to match Dennis’ body */
-  z-index:0;
-}
-
-/* Image anchored at bottom with hover effect and narrow border */
-.hover-img {
-  position: absolute;
-  bottom: 20px;
-  left: 50%;
-  transform: translateX(-50%);
-  max-width: 400px;
-  width: auto;
-  max-height: 450px;
-  border-radius: 10px;
-  z-index: 3;
-  padding: 5px;
-  background: rgba(255,255,255,0.01);
-  box-shadow: 0 15px 40px rgba(0,0,0,0.35);
-  transition: all 0.3s ease;
-}
-
-.hover-img:hover {
-  transform: translateX(-50%) scale(1.08);
-  box-shadow: 0 18px 45px rgba(0,0,0,0.4);
-}
-
-/* Glow behind image */
-.image-glow {
-  position: absolute;
-  bottom: 15px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 370px;
-  height: 370px;
-  background: radial-gradient(circle, rgba(255,255,255,0.25), rgba(0,0,0,0));
-  border-radius: 50%;
-  filter: blur(45px);
-  z-index: 2;
-}
-
-/* Blobs */
-.blob {
-  position:absolute;
-  border-radius:50%;
-  opacity:0.4;
-  filter: blur(40px);
-  z-index:1;
-  animation: float 10s ease-in-out infinite, colorShift 12s ease infinite;
-}
-
-/* Blob positions */
-.layer1 { top:-40px; left:-30px; width:220px; height:220px; }
-.layer2 { bottom:-50px; right:-50px; width:300px; height:300px; }
-.layer3 { top:15%; right:8%; width:180px; height:180px; }
-.layer4 { bottom:18%; left:12%; width:160px; height:160px; }
-
-/* Floating animation */
-@keyframes float {
-  0% { transform: translateY(0px) translateX(0px); }
-  50% { transform: translateY(-25px) translateX(15px); }
-  100% { transform: translateY(0px) translateX(0px); }
-}
-
-/* Color shift for blobs */
-@keyframes colorShift {
-  0%   { background: rgba(255,110,199,0.4); }
-  25%  { background: rgba(120,75,160,0.4); }
-  50%  { background: rgba(79,172,254,0.4); }
-  75%  { background: rgba(0,242,254,0.4); }
-  100% { background: rgba(255,179,71,0.4); }
-}
-
-/* Gradient animation */
-@keyframes gradientShift {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
-}
-
-/* Sparkles */
-.sparkle-container {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  top:0; left:0;
-  pointer-events:none;
-  z-index:1;
-  overflow:hidden;
-}
-
-.sparkle {
-  position: absolute;
-  width: 3px;
-  height: 3px;
-  border-radius: 50%;
-  background: rgba(255,255,255,0.9);
-  opacity: 0.9;
-  animation: sparkleMove linear infinite;
-}
-
-@keyframes sparkleMove {
-  0% { transform: translateY(0) translateX(0); opacity: 0.9; }
-  50% { opacity: 0.5; }
-  100% { transform: translateY(-600px) translateX(50px); opacity: 0; }
-}
-
-/* Responsive adjustments */
-@media screen and (max-width: 768px) {
-  .landing-tab { min-height: 480px; padding: 20px; }
-  .hover-img { max-width: 280px; max-height: 320px; bottom: 15px; }
-  .image-glow { width: 250px; height: 250px; bottom: 10px; }
-  .layer1 { width:180px; height:180px; top:-20px; left:-20px; }
-  .layer2 { width:250px; height:250px; bottom:-30px; right:-30px; }
-  .layer3 { width:150px; height:150px; top:10%; right:5%; }
-  .layer4 { width:130px; height:130px; bottom:15%; left:10%; }
-}
-</style>
 
 <script>
 // Throttle helper
@@ -310,7 +151,6 @@ for(let i=0;i<35;i++){
   sparkleContainer.appendChild(sparkle);
 }
 </script>
-</section>
 
 <header>
   <h1 style="text-align:center; color:#ff9100; margin-top:12px;">SUPER SUNDAY STARTS IN</h1>
@@ -357,8 +197,6 @@ for(let i=0;i<35;i++){
   <div class="country-tab"><img src="https://flagcdn.com/w80/my.png" alt="Malaysia">Malaysia <span>9:00 PM</span></div>
 </div>
 
-</div>
-
 <div class="join-section">
   <h2>Seats are limited! Join 10 Minutes Early!</h2>
   <button onclick="window.location.href='https://meetn.com/voidara'">Yes, I will be there</button>
@@ -383,8 +221,6 @@ for(let i=0;i<35;i++){
 </div>
 
 <!-- Countdown JS -->
-<script>
-<script>
 <script>
 function startCountdown(id, meetingHourTrinidad=9, meetingMinuteTrinidad=0) {
   const el = document.getElementById(id);
@@ -416,30 +252,32 @@ function startCountdown(id, meetingHourTrinidad=9, meetingMinuteTrinidad=0) {
   setInterval(updateTimer,1000);
 }
 startCountdown('timer1');
-
 </script>
 
-<!-- tsParticles -->
 <script>
-tsParticles.load("ai-particles",{
-  fpsLimit:60,
-  background:{color:"transparent"},
-  particles:{
-    number:{value:80,density:{enable:true,area:900}},
-    color:{value:["#00e5ff","#ff6f00","#ff9100","#ffcc00","#6a1b9a"]},
+// tsParticles init
+tsParticles.load("ai-particles", {
+  fpsLimit: 60,
+  particles: {
+    number: {value:40, density:{enable:true, value_area:800}},
+    color:{value:"#ffffff"},
     shape:{type:"circle"},
-    opacity:{value:0.4,random:true},
-    size:{value:{min:2,max:6},random:true},
-    move:{enable:true,speed:1.2,direction:"none",random:true,straight:false,outModes:{default:"out"}},
-    links:{enable:false}
+    opacity:{value:0.5, random:true},
+    size:{value:3, random:true},
+    move:{enable:true, speed:1, direction:"none", random:true, straight:false, out_mode:"out"}
   },
-  interactivity:{events:{onHover:{enable:true,mode:"repulse"},onClick:{enable:true,mode:"push"}}},
+  interactivity:{
+    detectsOn:"canvas",
+    events:{onhover:{enable:true, mode:"repulse"}, onclick:{enable:true, mode:"push"}, resize:true},
+    modes:{repulse:{distance:100, duration:0.4}, push:{particles_nb:4}}
+  },
   detectRetina:true
 });
 </script>
 
 </body>
 </html>
+
 
 
 

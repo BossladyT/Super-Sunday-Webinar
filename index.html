@@ -79,7 +79,33 @@
                   border-radius:10px; padding:8px 15px; font-weight:800; white-space:nowrap; color:#fff; font-size:0.9rem;}
   @keyframes scroll-left {0%{transform:translateX(100%);}100%{transform:translateX(-100%);}}
 
-  @media (max-width:1024px) { .country-tab{width:130px;} }
+  /* Landing Tab & Image */
+  .landing-tab {
+    position: relative;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    text-align: center;
+    padding: 40px 20px;
+  }
+
+  .landing-tab img.hover-img {
+    width: 100%;
+    max-width: 500px;
+    height: auto;
+    border-radius: 15px;
+    box-shadow: 0 0 25px #00e5ff, 0 0 50px #00e5ff, 0 0 75px #00e5ff;
+    transition: transform 0.3s ease;
+  }
+
+  .landing-tab img.hover-img:hover {
+    transform: scale(1.05);
+  }
+
+  @media (max-width:1024px) {
+    .landing-tab img.hover-img { max-width:400px; }
+    .country-tab{width:130px;}
+  }
   @media (max-width:768px) {
     .timers{flex-direction:column; gap:20px;} 
     .country-tab{width:100px;font-size:0.8rem;}
@@ -88,6 +114,7 @@
     .join-section button {padding:15px 30px; font-size:1.2rem;}
     .timer {font-size:1.5rem;}
     .timer p {font-size:2rem;}
+    .landing-tab img.hover-img { max-width:300px; }
   }
 
   .hero h1, .hero p {position:relative; z-index:1;}
@@ -102,10 +129,11 @@
 <section class="hero">
   <div id="ai-particles"></div>
   <h1>Join the Founder Dennis Nowak</h1>
-  <p>He is bringing the heat with EXCITING UPDATES and MAJOR NEWS on this Super Sunday Special Session. </p>
+  <p>He is bringing the heat with EXCITING UPDATES and MAJOR NEWS on this Super Sunday Special Session.</p>
   <p>Do not Miss It!</p>
 </section>
 
+<!-- Landing Image with Effects -->
 <section class="landing-tab">
   <div class="animated-gradient-bg"></div>
   <div class="blob layer1"></div>
@@ -214,65 +242,50 @@ for(let i=0;i<35;i++){
     <div class="carousel-item">20% Matching Bonus</div>
     <div class="carousel-item">10% Binary Bonus</div>
     <div class="carousel-item">10% Global Profit Pools</div>
-    <div class="carousel-item">20% Agent Bonus</div>
-    <div class="carousel-item">Rank Rewards</div>
-    <div class="carousel-item">30% Subscription Bonus</div>
+    <div class="carousel-item">Extra Rewards Daily!</div>
+    <div class="carousel-item">Join Dennis Today!</div>
   </div>
 </div>
 
-<!-- Countdown JS -->
 <script>
-function startCountdown(id, meetingHourTrinidad=9, meetingMinuteTrinidad=0) {
-  const el = document.getElementById(id);
-  
-  function updateTimer() {
-    const now = new Date();
-    
-    // Meeting in Trinidad timezone (UTC-4)
-    const meeting = new Date(Date.UTC(
-      now.getUTCFullYear(),
-      now.getUTCMonth(),
-      now.getUTCDate(),
-      meetingHourTrinidad + 4, // Trinidad is UTC-4
-      meetingMinuteTrinidad,
-      0
-    ));
-    
-    // If meeting time has passed today, use tomorrow
-    if(now.getTime() > meeting.getTime()) meeting.setUTCDate(meeting.getUTCDate()+1);
-    
-    let diff = meeting - now;
-    let h = Math.floor(diff / 1000 / 60 / 60);
-    let m = Math.floor(diff / 1000 / 60) % 60;
-    let s = Math.floor(diff / 1000) % 60;
-    
-    el.textContent = `${h.toString().padStart(2,'0')}:${m.toString().padStart(2,'0')}:${s.toString().padStart(2,'0')}`;
-  }
-  updateTimer();
-  setInterval(updateTimer,1000);
-}
-startCountdown('timer1');
-</script>
+  // Countdown Timer
+  const countdownDate = new Date("Sep 22, 2025 09:00:00").getTime();
+  const timerElement = document.getElementById("timer1");
 
-<script>
-// tsParticles init
-tsParticles.load("ai-particles", {
-  fpsLimit: 60,
-  particles: {
-    number: {value:40, density:{enable:true, value_area:800}},
-    color:{value:"#ffffff"},
-    shape:{type:"circle"},
-    opacity:{value:0.5, random:true},
-    size:{value:3, random:true},
-    move:{enable:true, speed:1, direction:"none", random:true, straight:false, out_mode:"out"}
-  },
-  interactivity:{
-    detectsOn:"canvas",
-    events:{onhover:{enable:true, mode:"repulse"}, onclick:{enable:true, mode:"push"}, resize:true},
-    modes:{repulse:{distance:100, duration:0.4}, push:{particles_nb:4}}
-  },
-  detectRetina:true
-});
+  function updateTimer(){
+    const now = new Date().getTime();
+    const distance = countdownDate - now;
+    if(distance < 0){ timerElement.innerHTML="00:00:00"; return; }
+    const hours = Math.floor((distance%(1000*60*60*24))/(1000*60*60));
+    const minutes = Math.floor((distance%(1000*60*60))/(1000*60));
+    const seconds = Math.floor((distance%(1000*60))/1000);
+    timerElement.innerHTML = `${hours.toString().padStart(2,'0')} H : ${minutes.toString().padStart(2,'0')} M : ${seconds.toString().padStart(2,'0')} S`;
+  }
+  setInterval(updateTimer, 1000);
+  updateTimer();
+
+  // tsParticles
+  tsParticles.load("ai-particles", {
+    background: { color: { value: "transparent" } },
+    fpsLimit: 60,
+    particles: {
+      number: { value: 80, density: { enable: true, area: 800 } },
+      color: { value: ["#00e5ff","#ffcc00","#ff6f00","#ffffff"] },
+      shape: { type: "circle" },
+      opacity: { value: 0.7, random: true },
+      size: { value: 3, random: true },
+      move: { enable: true, speed: 1.5, direction: "none", outMode: "bounce" },
+      links: { enable: true, distance: 120, color: "#00e5ff", opacity:0.3, width:1 }
+    },
+    interactivity: {
+      events: {
+        onhover: { enable: true, mode: "repulse" },
+        onclick: { enable: true, mode: "push" }
+      },
+      modes: { repulse: { distance: 100 }, push: { quantity: 4 } }
+    },
+    detectRetina: true
+  });
 </script>
 
 </body>

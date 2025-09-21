@@ -249,20 +249,48 @@ for(let i=0;i<35;i++){
 
 <script>
   // Countdown Timer
-  const countdownDate = new Date("Sep 22, 2025 09:00:00").getTime();
-  const timerElement = document.getElementById("timer1");
+ <!-- Countdown JS for recurring Sunday meeting -->
+<script>
+function startCountdown(id, meetingHourUTC=13, meetingMinuteUTC=0) {
+  // meetingHourUTC = hour in UTC for the meeting (e.g., 9 AM Trinidad = 13 UTC)
+  const el = document.getElementById(id);
 
-  function updateTimer(){
-    const now = new Date().getTime();
-    const distance = countdownDate - now;
-    if(distance < 0){ timerElement.innerHTML="00:00:00"; return; }
-    const hours = Math.floor((distance%(1000*60*60*24))/(1000*60*60));
-    const minutes = Math.floor((distance%(1000*60*60))/(1000*60));
-    const seconds = Math.floor((distance%(1000*60))/1000);
-    timerElement.innerHTML = `${hours.toString().padStart(2,'0')} H : ${minutes.toString().padStart(2,'0')} M : ${seconds.toString().padStart(2,'0')} S`;
+  function updateTimer() {
+    const now = new Date();
+    
+    // Find next Sunday
+    const nextSunday = new Date(Date.UTC(
+      now.getUTCFullYear(),
+      now.getUTCMonth(),
+      now.getUTCDate(),
+      0,0,0
+    ));
+    
+    // Days until next Sunday (0=Sunday,1=Monday,...6=Saturday)
+    const day = nextSunday.getUTCDay();
+    const daysUntilSunday = (7 - day) % 7;
+    nextSunday.setUTCDate(nextSunday.getUTCDate() + daysUntilSunday);
+    
+    // Set meeting time
+    nextSunday.setUTCHours(meetingHourUTC, meetingMinuteUTC, 0, 0);
+
+    // Calculate remaining time
+    let diff = nextSunday - now;
+    let h = Math.floor(diff / 1000 / 60 / 60);
+    let m = Math.floor(diff / 1000 / 60) % 60;
+    let s = Math.floor(diff / 1000) % 60;
+
+    el.textContent = `${h.toString().padStart(2,'0')}:${m.toString().padStart(2,'0')}:${s.toString().padStart(2,'0')}`;
   }
-  setInterval(updateTimer, 1000);
+
   updateTimer();
+  setInterval(updateTimer, 1000);
+}
+
+// Call it: 9 AM Trinidad = 13 UTC
+startCountdown('timer1', 13, 0);
+</script>
+
 
   // tsParticles
   tsParticles.load("ai-particles", {
@@ -290,6 +318,7 @@ for(let i=0;i<35;i++){
 
 </body>
 </html>
+
 
 
 

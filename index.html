@@ -386,31 +386,36 @@ for(let i=0;i<35;i++){
 <script>
 <script>
 <script>
-function startCountdown(id, targetDateTimeUTC) {
+function startCountdown(id, meetingHourTrinidad=9, meetingMinuteTrinidad=0) {
   const el = document.getElementById(id);
+  
   function updateTimer() {
-    const now = new Date().getTime();
-    const diff = targetDateTimeUTC - now;
-    if (diff <= 0) {
-      el.innerHTML = "The meeting has started!";
-      return;
-    }
-    let hours = Math.floor(diff / (1000*60*60));
-    let minutes = Math.floor((diff % (1000*60*60)) / (1000*60));
-    let seconds = Math.floor((diff % (1000*60)) / 1000);
-    el.innerHTML =
-      `${String(hours).padStart(2,'0')}:` +
-      `${String(minutes).padStart(2,'0')}:` +
-      `${String(seconds).padStart(2,'0')}`;
+    const now = new Date();
+    
+    // Meeting in Trinidad timezone (UTC-4)
+    const meeting = new Date(Date.UTC(
+      now.getUTCFullYear(),
+      now.getUTCMonth(),
+      now.getUTCDate(),
+      meetingHourTrinidad + 4, // Trinidad is UTC-4
+      meetingMinuteTrinidad,
+      0
+    ));
+    
+    // If meeting time has passed today, use tomorrow
+    if(now.getTime() > meeting.getTime()) meeting.setUTCDate(meeting.getUTCDate()+1);
+    
+    let diff = meeting - now;
+    let h = Math.floor(diff / 1000 / 60 / 60);
+    let m = Math.floor(diff / 1000 / 60) % 60;
+    let s = Math.floor(diff / 1000) % 60;
+    
+    el.textContent = `${h.toString().padStart(2,'0')}:${m.toString().padStart(2,'0')}:${s.toString().padStart(2,'0')}`;
   }
   updateTimer();
-  setInterval(updateTimer, 1000);
+  setInterval(updateTimer,1000);
 }
-
-// FIXED UTC meeting time: 9:00 AM Trinidad / 3:00 PM South Africa
-const meetingTimeUTC = new Date("2025-09-21T13:00:00Z").getTime();
-startCountdown('timer1', meetingTimeUTC);
-</script>
+startCountdown('timer1');
 
 </script>
 
@@ -435,6 +440,7 @@ tsParticles.load("ai-particles",{
 
 </body>
 </html>
+
 
 
 

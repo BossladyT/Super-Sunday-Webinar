@@ -385,6 +385,7 @@ for(let i=0;i<35;i++){
 <!-- Countdown JS -->
 <script>
 <script>
+<script>
 function startCountdown(id, targetDateTimeUTC) {
   const el = document.getElementById(id);
   function updateTimer() {
@@ -406,9 +407,11 @@ function startCountdown(id, targetDateTimeUTC) {
   setInterval(updateTimer, 1000);
 }
 
-// Meeting time: Sept 21, 2025 @ 9:00 AM Trinidad (13:00 UTC)
-const meetingTime = new Date("2025-09-21T13:00:00Z").getTime();
-startCountdown('timer1', meetingTime);
+// FIXED UTC meeting time: 9:00 AM Trinidad / 3:00 PM South Africa
+const meetingTimeUTC = new Date("2025-09-21T13:00:00Z").getTime();
+startCountdown('timer1', meetingTimeUTC);
+</script>
+
 </script>
 
 <!-- tsParticles -->
@@ -432,6 +435,7 @@ tsParticles.load("ai-particles",{
 
 </body>
 </html>
+
 
 
 
